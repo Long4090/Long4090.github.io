@@ -4,90 +4,141 @@
     <meta charset="UTF-8">
     <title>건강 기록 입력 폼</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        h2 {
+            text-align: center;
+            color: #4A90E2;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            background: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        table, th, td {
-            border: 1px solid #333;
-        }
         th, td {
-            padding: 10px;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4A90E2;
+            color: #fff;
+            font-weight: normal;
             text-align: center;
         }
+        td {
+            background-color: #f9f9f9;
+        }
         input[type="number"], input[type="text"], input[type="time"], input[type="date"] {
+            width: calc(100% - 12px);
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input[type="text"]:focus, input[type="number"]:focus, input[type="time"]:focus, input[type="date"]:focus {
+            border-color: #4A90E2;
+            outline: none;
+        }
+        button[type="submit"] {
+            background-color: #4A90E2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
             width: 100%;
-            padding: 5px;
+        }
+        button[type="submit"]:hover {
+            background-color: #357ABD;
         }
     </style>
 </head>
 <body>
-    <h2>건강 기록 입력 폼</h2>
-    <form action="/submit" method="post">
-        <table>
-            <tr>
-                <th>일자</th>
-                <td><input type="date" name="date"></td>
-            </tr>
-            <tr>
-                <th>수면 시간</th>
-                <td>밤: <input type="time" name="sleep_night"> 낮: <input type="time" name="sleep_day"></td>
-            </tr>
-            <tr>
-                <th>혈압 (기상직후)</th>
-                <td>수축기: <input type="number" name="bp_morning_sys"> 이완기: <input type="number" name="bp_morning_dia"> 맥박: <input type="number" name="bp_morning_pulse"></td>
-            </tr>
-            <tr>
-                <th>혈압 (취침 1시간 전)</th>
-                <td>수축기: <input type="number" name="bp_night_sys"> 이완기: <input type="number" name="bp_night_dia"> 맥박: <input type="number" name="bp_night_pulse"></td>
-            </tr>
-            <tr>
-                <th>혈당</th>
-                <td>
-                    공복: <input type="number" name="glucose_fasting">
-                    식후2시간(오전): <input type="number" name="glucose_am">
-                    식후2시간(점심): <input type="number" name="glucose_pm">
-                    식후2시간(저녁): <input type="number" name="glucose_evening">
-                </td>
-            </tr>
-            <tr>
-                <th>복용약</th>
-                <td>혈압: <input type="text" name="med_bp"> 고지혈: <input type="text" name="med_cholesterol"> 당뇨: <input type="text" name="med_diabetes"> 비염: <input type="text" name="med_rhinitis"></td>
-            </tr>
-            <tr>
-                <th>기타처방</th>
-                <td>비타민C: <input type="text" name="supp_vitamin_c"> 코큐텐: <input type="text" name="supp_coq10"></td>
-            </tr>
-            <tr>
-                <th>건강보조</th>
-                <td>몸무게: <input type="number" name="weight"> 체지방율: <input type="number" name="body_fat"> BMI: <input type="number" name="bmi"></td>
-            </tr>
-            <tr>
-                <th>금지사항</th>
-                <td>흡연: <input type="text" name="prohibit_smoking"> 음주: <input type="text" name="prohibit_alcohol"></td>
-            </tr>
-            <tr>
-                <th>운동</th>
-                <td>
-                    런닝: <input type="text" name="exercise_running"> 
-                    근력: <input type="text" name="exercise_strength"> 
-                    구기: <input type="text" name="exercise_ball"> 
-                    골프: <input type="text" name="exercise_golf"> 
-                    산책: <input type="text" name="exercise_walk">
-                </td>
-            </tr>
-            <tr>
-                <th>식사</th>
-                <td>아침: <input type="text" name="meal_breakfast"> 점심: <input type="text" name="meal_lunch"> 저녁: <input type="text" name="meal_dinner"></td>
-            </tr>
-            <tr>
-                <th>특이사항</th>
-                <td><input type="text" name="notes"></td>
-            </tr>
-            <tr>
-                <td colspan="2"><button type="submit">제출</button></td>
-            </tr>
-        </table>
-    </form>
+    <div class="form-container">
+        <h2>건강 기록 입력 폼</h2>
+        <form action="/submit" method="post">
+            <table>
+                <tr>
+                    <th>일자</th>
+                    <td><input type="date" name="date"></td>
+                </tr>
+                <tr>
+                    <th>수면 시간</th>
+                    <td>밤: <input type="time" name="sleep_night"> 낮: <input type="time" name="sleep_day"></td>
+                </tr>
+                <tr>
+                    <th>혈압 (기상직후)</th>
+                    <td>수축기: <input type="number" name="bp_morning_sys"> 이완기: <input type="number" name="bp_morning_dia"> 맥박: <input type="number" name="bp_morning_pulse"></td>
+                </tr>
+                <tr>
+                    <th>혈압 (취침 1시간 전)</th>
+                    <td>수축기: <input type="number" name="bp_night_sys"> 이완기: <input type="number" name="bp_night_dia"> 맥박: <input type="number" name="bp_night_pulse"></td>
+                </tr>
+                <tr>
+                    <th>혈당</th>
+                    <td>
+                        공복: <input type="number" name="glucose_fasting">
+                        식후2시간(오전): <input type="number" name="glucose_am">
+                        식후2시간(점심): <input type="number" name="glucose_pm">
+                        식후2시간(저녁): <input type="number" name="glucose_evening">
+                    </td>
+                </tr>
+                <tr>
+                    <th>복용약</th>
+                    <td>혈압: <input type="text" name="med_bp"> 고지혈: <input type="text" name="med_cholesterol"> 당뇨: <input type="text" name="med_diabetes"> 비염: <input type="text" name="med_rhinitis"></td>
+                </tr>
+                <tr>
+                    <th>기타처방</th>
+                    <td>비타민C: <input type="text" name="supp_vitamin_c"> 코큐텐: <input type="text" name="supp_coq10"></td>
+                </tr>
+                <tr>
+                    <th>건강보조</th>
+                    <td>몸무게: <input type="number" name="weight"> 체지방율: <input type="number" name="body_fat"> BMI: <input type="number" name="bmi"></td>
+                </tr>
+                <tr>
+                    <th>금지사항</th>
+                    <td>흡연: <input type="text" name="prohibit_smoking"> 음주: <input type="text" name="prohibit_alcohol"></td>
+                </tr>
+                <tr>
+                    <th>운동</th>
+                    <td>
+                        런닝: <input type="text" name="exercise_running"> 
+                        근력: <input type="text" name="exercise_strength"> 
+                        구기: <input type="text" name="exercise_ball"> 
+                        골프: <input type="text" name="exercise_golf"> 
+                        산책: <input type="text" name="exercise_walk">
+                    </td>
+                </tr>
+                <tr>
+                    <th>식사</th>
+                    <td>아침: <input type="text" name="meal_breakfast"> 점심: <input type="text" name="meal_lunch"> 저녁: <input type="text" name="meal_dinner"></td>
+                </tr>
+                <tr>
+                    <th>특이사항</th>
+                    <td><input type="text" name="notes"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">제출</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>
